@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="46" height="46" viewBox="0 0 46 46">
+    <defs>
+        <linearGradient id="9winzqd79a" x1=".119" y1=".11" x2="1" y2="1" gradientUnits="objectBoundingBox">
+            <stop offset="0" stop-color="#0097ee"/>
+            <stop offset="1" stop-color="#1be7b2"/>
+        </linearGradient>
+        <clipPath id="8q6mfag4wc">
+            <path data-name="Rectangle 155" transform="translate(179 632)" style="fill:url(#9winzqd79a)" d="M0 0h16v16H0z"/>
+        </clipPath>
+        <filter id="nc3wu7kafb" x="0" y="0" width="46" height="46" filterUnits="userSpaceOnUse">
+            <feOffset dy="3"/>
+            <feGaussianBlur stdDeviation="3" result="blur"/>
+            <feFlood flood-opacity=".161"/>
+            <feComposite operator="in" in2="blur"/>
+            <feComposite in="SourceGraphic"/>
+        </filter>
+    </defs>
+    <g data-name="Group 321">
+        <g style="filter:url(#nc3wu7kafb)">
+            <circle data-name="Ellipse 23" cx="14" cy="14" r="14" transform="translate(9 6)" style="fill:#fff"/>
+        </g>
+        <g data-name="Mask Group 21" transform="translate(-164 -620)" style="clip-path:url(#8q6mfag4wc)">
+            <g data-name="order again">
+                <g data-name="032---History" transform="translate(179 632)">
+                    <path d="M0 12.286a1.43 1.43 0 0 0 1.429 1.429h5.4a5 5 0 0 1-.465-3.143H6a1.143 1.143 0 1 1 0-2.286h1.367a5.132 5.132 0 0 1 4.062-2c.1 0 .19.009.284.014v-.014a.571.571 0 0 0-.571-.571H6a.571.571 0 0 0 0 1.142h.857a.286.286 0 0 1 0 .571H6a1.143 1.143 0 1 1 0-2.285h5.143a1.143 1.143 0 0 1 1.143 1.143c0 .026-.005.051-.007.076a5.1 5.1 0 0 1 1.436.467v-5.4A1.43 1.43 0 0 0 12.286 0H1.429A1.43 1.43 0 0 0 0 1.429zM6 2h5.143a1.143 1.143 0 1 1 0 2.286.286.286 0 0 1 0-.571.571.571 0 0 0 0-1.143H6a.571.571 0 1 0 0 1.142h3.714a.286.286 0 0 1 0 .571H6A1.143 1.143 0 1 1 6 2zM2.571 2a1.143 1.143 0 1 1-1.142 1.143A1.143 1.143 0 0 1 2.571 2zm0 3.143a1.143 1.143 0 1 1-1.142 1.143 1.143 1.143 0 0 1 1.142-1.143zm0 3.143a1.143 1.143 0 1 1-1.142 1.143 1.143 1.143 0 0 1 1.142-1.143z" style="fill:url(#9winzqd79a)"/>
+                    <circle cx=".571" cy=".571" r=".571" transform="translate(2 2.571)" style="fill:url(#9winzqd79a)"/>
+                    <circle data-name="Oval" cx=".571" cy=".571" r=".571" transform="translate(2 5.714)" style="fill:url(#9winzqd79a)"/>
+                    <circle data-name="Oval" cx=".571" cy=".571" r=".571" transform="translate(2 8.857)" style="fill:url(#9winzqd79a)"/>
+                    <path data-name="Shape" d="M11.429 6.857A4.571 4.571 0 1 0 16 11.429a4.571 4.571 0 0 0-4.571-4.572zm0 7.143A2.571 2.571 0 1 1 14 11.429a.286.286 0 0 1-.571 0 2 2 0 1 0-2 2 .286.286 0 0 1 0 .571zm2.505-.96a.286.286 0 0 1-.439 0l-1.429-1.714a.286.286 0 0 1 .439-.366l1.209 1.451 1.209-1.451a.286.286 0 1 1 .439.366z" style="fill:url(#9winzqd79a)"/>
+                    <path data-name="Shape" d="M5.6 9.025A.571.571 0 0 0 6 10h.492a5.114 5.114 0 0 1 .49-1.143H6a.567.567 0 0 0-.4.168z" style="fill:url(#9winzqd79a)"/>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

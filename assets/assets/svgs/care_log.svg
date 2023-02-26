@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="46" height="46" viewBox="0 0 46 46">
+    <defs>
+        <linearGradient id="soght2vmeb" x1=".5" x2=".5" y2="1" gradientUnits="objectBoundingBox">
+            <stop offset="0" stop-color="#0097ee"/>
+            <stop offset="1" stop-color="#1be7b2"/>
+        </linearGradient>
+        <filter id="1ziynesy7a" x="0" y="0" width="46" height="46" filterUnits="userSpaceOnUse">
+            <feOffset dy="3"/>
+            <feGaussianBlur stdDeviation="3" result="blur"/>
+            <feFlood flood-opacity=".161"/>
+            <feComposite operator="in" in2="blur"/>
+            <feComposite in="SourceGraphic"/>
+        </filter>
+    </defs>
+    <g data-name="Group 379">
+        <g style="filter:url(#1ziynesy7a)">
+            <circle data-name="Ellipse 23" cx="14" cy="14" r="14" transform="translate(9 6)" style="fill:#fff"/>
+        </g>
+        <path data-name="Path 427" d="M72.6 30.413a1.363 1.363 0 0 0-.983-.413H71v.625a1.241 1.241 0 0 1-1.229 1.25h-5.53a1.241 1.241 0 0 1-1.229-1.25V30H62.4a1.4 1.4 0 0 0-1.383 1.405L61 43.658a1.409 1.409 0 0 0 .4 1 1.363 1.363 0 0 0 .979.413H71.6a1.4 1.4 0 0 0 1.383-1.405L73 31.408a1.409 1.409 0 0 0-.4-.995zm-5.439 4.276h3.275a.469.469 0 0 1 0 .938h-3.279a.469.469 0 0 1 0-.938zm0 3.126h3.275a.469.469 0 0 1 0 .938h-3.279a.469.469 0 0 1 0-.938zm0 3.126h3.289a.469.469 0 0 1 0 .938h-3.293a.469.469 0 0 1 0-.938zm-3.928-6.233a.456.456 0 0 1 .652 0l.251.255 1.063-1.081a.456.456 0 0 1 .652 0 .475.475 0 0 1 0 .663l-1.389 1.413a.456.456 0 0 1-.652 0l-.577-.587a.474.474 0 0 1-.004-.664zm0 3.364a.456.456 0 0 1 .652 0l.251.255 1.063-1.081a.456.456 0 0 1 .652 0 .475.475 0 0 1 0 .663l-1.389 1.413a.456.456 0 0 1-.652 0l-.577-.587a.474.474 0 0 1-.004-.664zm0 3.126a.456.456 0 0 1 .652 0l.251.255 1.063-1.081a.456.456 0 0 1 .652 0 .475.475 0 0 1 0 .663l-1.389 1.413a.456.456 0 0 1-.652 0l-.577-.587a.474.474 0 0 1-.004-.661z" transform="translate(-44 -17.065)" style="fill:url(#soght2vmeb)"/>
+        <path data-name="Path 428" d="M156.361 1.563a.308.308 0 0 0 .3.313h5.449a.308.308 0 0 0 .3-.313V.313a.308.308 0 0 0-.3-.313h-5.449a.308.308 0 0 0-.3.313z" transform="translate(-136.38 11.997)" style="fill:url(#soght2vmeb)"/>
+    </g>
+</svg>

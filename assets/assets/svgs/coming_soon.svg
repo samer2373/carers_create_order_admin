@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="63" height="63" viewBox="0 0 63 63">
+    <g data-name="time (2)">
+        <path d="M0 30a30 30 0 1 1 30 30A30 30 0 0 1 0 30z" style="fill:none;stroke:#1b69c7;stroke-width:3px" transform="translate(1.5 1.5)"/>
+        <path d="M22.71 0a2.523 2.523 0 0 0-2.523 2.523v17.664H2.523a2.523 2.523 0 1 0 0 5.047H22.71a2.523 2.523 0 0 0 2.523-2.523V2.523A2.523 2.523 0 0 0 22.71 0z" transform="translate(11.435 11.435)" style="fill:#1b69c7"/>
+    </g>
+</svg>

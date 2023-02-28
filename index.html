@@ -46,11 +46,24 @@
 <script src="assets/packages/libphonenumber_plugin/js/libphonenumber.js"></script>
 <script src="assets/packages/libphonenumber_plugin/js/stringbuffer.js"></script>
 <script>
-    $.get("https://carers.care/admin/current-admin", function (data, status) {
-        localStorage.setItem("flutter.IsLoggedInAdmin", true);
-        localStorage.setItem("flutter.tokenAdmin", data);
+    // $.get("https://carers.care/admin/current-admin", function (data, status) {
+    //     localStorage.setItem("flutter.IsLoggedInAdmin", true);
+    //     localStorage.setItem("flutter.tokenAdmin", data);
+    // });
+    $.ajax({
+        url: "https://carers.care/admin/current-admin",
+        headers: {
+            'Access-Control-Allow-Origin': '*',
+            'Content-Type': 'application/json'
+        },
+        dataType: "json",
+        type: "GET",
+        success: function (msg) {
+            localStorage.setItem("flutter.IsLoggedInAdmin", true);
+            localStorage.setItem("flutter.tokenAdmin", msg);
+            console.log(msg);
+        }
     });
-
     var serviceWorkerVersion = '2735899850'
     var scriptLoaded = false
 

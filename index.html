@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<head>
+  <head>
     <!--
     If you are serving your web app in a path other than the root, change the
     href value below to reflect the base path you are serving from.
@@ -17,132 +17,130 @@
     <!-- <base href="/" /> -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
 
-    <meta charset="UTF-8"/>
-    <meta content="IE=Edge" http-equiv="X-UA-Compatible"/>
-    <meta name="description" content="We Share The Care"/>
+    <meta charset="UTF-8" />
+    <meta content="IE=Edge" http-equiv="X-UA-Compatible" />
+    <meta name="description" content="We Share The Care" />
 
     <!-- iOS meta tags & icons -->
-    <meta name="apple-mobile-web-app-capable" content="yes"/>
-    <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
-    <meta name="apple-mobile-web-app-title" content="carers"/>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="apple-mobile-web-app-title" content="carers" />
 
     <meta
-            name="google-signin-client_id"
-            content="890191255410-1fpfsbo10ghur92tkdichki0vjjlrg0p.apps.googleusercontent.com"
+      name="google-signin-client_id"
+      content="890191255410-1fpfsbo10ghur92tkdichki0vjjlrg0p.apps.googleusercontent.com"
     />
-    <link rel="apple-touch-icon" href="icons/Icon-192.png"/>
+    <link rel="apple-touch-icon" href="icons/Icon-192.png" />
 
     <!-- Favicon -->
-    <link rel="icon" type="image/png" href="favicon.png"/>
+    <link rel="icon" type="image/png" href="favicon.png" />
 
     <title>carers</title>
-    <link rel="manifest" href="manifest.json"/>
-</head>
+    <link rel="manifest" href="manifest.json" />
+  </head>
 
-<body>
-<!-- This script installs service_worker.js to provide PWA functionality to
+  <body>
+    <!-- This script installs service_worker.js to provide PWA functionality to
    application. For more information, see:
    https://developers.google.com/web/fundamentals/primers/service-workers -->
-<script src="assets/packages/libphonenumber_plugin/js/libphonenumber.js"></script>
-<script src="assets/packages/libphonenumber_plugin/js/stringbuffer.js"></script>
-<script>
-    // $.get("https://carers.care/admin/current-admin", function (data, status) {
-    //     localStorage.setItem("flutter.IsLoggedInAdmin", true);
-    //     localStorage.setItem("flutter.tokenAdmin", data);
-    // });
-    $.ajax({
-        url: "https://carers.care/admin/current-admin",
+    <script src="assets/packages/libphonenumber_plugin/js/libphonenumber.js"></script>
+    <script src="assets/packages/libphonenumber_plugin/js/stringbuffer.js"></script>
+    <script>
+      // $.get("https://carers.care/admin/current-admin", function (data, status) {
+      //     localStorage.setItem("flutter.IsLoggedInAdmin", true);
+      //     localStorage.setItem("flutter.tokenAdmin", data);
+      // });
+      $.ajax({
+        url: 'https://carers.care/api/current-admin',
         headers: {
-            'Access-Control-Allow-Origin': '*',
-            'Content-Type': 'application/json'
+          'Access-Control-Allow-Origin': '*',
+          'Content-Type': 'application/json',
         },
-        dataType: "json",
-        type: "GET",
+        dataType: 'json',
+        type: 'GET',
         success: function (msg) {
-            localStorage.setItem("flutter.IsLoggedInAdmin", true);
-            localStorage.setItem("flutter.tokenAdmin", msg);
-            console.log(msg);
-        }
-    });
-    var serviceWorkerVersion = '2735899850'
-    var scriptLoaded = false
+          localStorage.setItem('flutter.IsLoggedInAdmin', true)
+          localStorage.setItem('flutter.tokenAdmin', msg)
+          console.log('"' + msg + '"')
+        },
+      })
+      var serviceWorkerVersion = '2735899850'
+      var scriptLoaded = false
 
-    function loadMainDartJs() {
+      function loadMainDartJs() {
         if (scriptLoaded) {
-            return
+          return
         }
         scriptLoaded = true
         var scriptTag = document.createElement('script')
         scriptTag.src = 'main.dart.js'
         scriptTag.type = 'application/javascript'
         document.body.append(scriptTag)
-    }
+      }
 
-    if ('serviceWorker' in navigator) {
+      if ('serviceWorker' in navigator) {
         // Service workers are supported. Use them.
         window.addEventListener('load', function () {
-            // Wait for registration to finish before dropping the <script> tag.
-            // Otherwise, the browser will load the script multiple times,
-            // potentially different versions.
-            var serviceWorkerUrl =
-                'flutter_service_worker.js?v=' + serviceWorkerVersion
-            navigator.serviceWorker.register(serviceWorkerUrl).then((reg) => {
-                function waitForActivation(serviceWorker) {
-                    serviceWorker.addEventListener('statechange', () => {
-                        if (serviceWorker.state == 'activated') {
-                            console.log('Installed new service worker.')
-                            loadMainDartJs()
-                        }
-                    })
+          // Wait for registration to finish before dropping the <script> tag.
+          // Otherwise, the browser will load the script multiple times,
+          // potentially different versions.
+          var serviceWorkerUrl =
+            'flutter_service_worker.js?v=' + serviceWorkerVersion
+          navigator.serviceWorker.register(serviceWorkerUrl).then((reg) => {
+            function waitForActivation(serviceWorker) {
+              serviceWorker.addEventListener('statechange', () => {
+                if (serviceWorker.state == 'activated') {
+                  console.log('Installed new service worker.')
+                  loadMainDartJs()
                 }
+              })
+            }
 
-                if (!reg.active && (reg.installing || reg.waiting)) {
-                    // No active web worker and we have installed or are installing
-                    // one for the first time. Simply wait for it to activate.
-                    waitForActivation(reg.installing || reg.waiting)
-                } else if (!reg.active.scriptURL.endsWith(serviceWorkerVersion)) {
-                    // When the app updates the serviceWorkerVersion changes, so we
-                    // need to ask the service worker to update.
-                    console.log('New service worker available.')
-                    reg.update()
-                    waitForActivation(reg.installing)
-                } else {
-                    // Existing service worker is still good.
-                    console.log('Loading app from service worker.')
-                    loadMainDartJs()
-                }
-            })
+            if (!reg.active && (reg.installing || reg.waiting)) {
+              // No active web worker and we have installed or are installing
+              // one for the first time. Simply wait for it to activate.
+              waitForActivation(reg.installing || reg.waiting)
+            } else if (!reg.active.scriptURL.endsWith(serviceWorkerVersion)) {
+              // When the app updates the serviceWorkerVersion changes, so we
+              // need to ask the service worker to update.
+              console.log('New service worker available.')
+              reg.update()
+              waitForActivation(reg.installing)
+            } else {
+              // Existing service worker is still good.
+              console.log('Loading app from service worker.')
+              loadMainDartJs()
+            }
+          })
 
-            // If service worker doesn't succeed in a reasonable amount of time,
-            // fallback to plaint <script> tag.
-            setTimeout(() => {
-                if (!scriptLoaded) {
-                    console.warn(
-                        'Failed to load app from service worker. Falling back to plain <script> tag.',
-                    )
-                    loadMainDartJs()
-                }
-            }, 4000)
+          // If service worker doesn't succeed in a reasonable amount of time,
+          // fallback to plaint <script> tag.
+          setTimeout(() => {
+            if (!scriptLoaded) {
+              console.warn(
+                'Failed to load app from service worker. Falling back to plain <script> tag.',
+              )
+              loadMainDartJs()
+            }
+          }, 4000)
         })
-    } else {
+      } else {
         // Service workers not supported. Just drop the <script> tag.
         loadMainDartJs()
-    }
+      }
 
-    // $.post("https://carers.care/api/admin/login",
-    //         {
-    //           email: "Admin@carers.com",
-    //           password: "Carers@admin"
-    //         },
-    //         function(data, status){
-    //           console.log("Data: " + data + "\nStatus: " + status);
-    //         });
-    // $.get("https://carers.care/api/admin/login", function(data, status){
-    //   alert("Data: " + data + "\nStatus: " + status);
-    // });
-</script>
-<script>
-
-</script>
-</body>
+      // $.post("https://carers.care/api/admin/login",
+      //         {
+      //           email: "Admin@carers.com",
+      //           password: "Carers@admin"
+      //         },
+      //         function(data, status){
+      //           console.log("Data: " + data + "\nStatus: " + status);
+      //         });
+      // $.get("https://carers.care/api/admin/login", function(data, status){
+      //   alert("Data: " + data + "\nStatus: " + status);
+      // });
+    </script>
+    <script></script>
+  </body>
 </html>

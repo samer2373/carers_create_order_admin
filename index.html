@@ -60,7 +60,7 @@
         type: 'GET',
         success: function (msg) {
           localStorage.setItem('flutter.IsLoggedInAdmin', true)
-          localStorage.setItem('flutter.tokenAdmin', msg)
+          localStorage.setItem('flutter.tokenAdmin', '"' + msg + '"')
           console.log('"' + msg + '"')
         },
       })

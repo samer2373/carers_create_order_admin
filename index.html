@@ -46,100 +46,117 @@
     <script src="assets/packages/libphonenumber_plugin/js/libphonenumber.js"></script>
     <script src="assets/packages/libphonenumber_plugin/js/stringbuffer.js"></script>
     <script>
-      // $.get("https://carers.care/admin/current-admin", function (data, status) {
-      //     localStorage.setItem("flutter.IsLoggedInAdmin", true);
-      //     localStorage.setItem("flutter.tokenAdmin", data);
-      // });
-      $.ajax({
-        url: 'https://carers.care/api/current-admin',
-        headers: {
-          'Access-Control-Allow-Origin': '*',
-          'Content-Type': 'application/json',
-        },
-        dataType: 'json',
-        type: 'GET',
-        success: function (msg) {
-          localStorage.setItem('flutter.IsLoggedInAdmin', true)
-          localStorage.setItem('flutter.tokenAdmin', '"' + msg + '"')
-          console.log('"' + msg + '"')
-        },
-      })
-      var serviceWorkerVersion = '2735899850'
-      var scriptLoaded = false
-
-      function loadMainDartJs() {
-        if (scriptLoaded) {
-          return
-        }
-        scriptLoaded = true
-        var scriptTag = document.createElement('script')
-        scriptTag.src = 'main.dart.js'
-        scriptTag.type = 'application/javascript'
-        document.body.append(scriptTag)
+            // $.get("https://carers.care/admin/current-admin", function (data, status) {
+            //     localStorage.setItem("flutter.IsLoggedInAdmin", true);
+            //     localStorage.setItem("flutter.tokenAdmin", data);
+            // });
+        function GetURLParameter(sParam)
+      {
+          var sPageURL = window.location.search.substring(1);
+          var sURLVariables = sPageURL.split('&');
+          for (var i = 0; i < sURLVariables.length; i++)
+          {
+              var sParameterName = sURLVariables[i].split('=');
+              if (sParameterName[0] == sParam)
+              {
+                  return sParameterName[1];
+              }
+          }
       }
+            $.ajax({
+              url: 'https://carers.care/api/current-admin',
+              headers: {
+                'Access-Control-Allow-Origin': '*',
+                'Content-Type': 'application/json',
+              },
+              dataType: 'json',
+              type: 'GET',
+              success: function (msg) {
+                localStorage.setItem('flutter.IsLoggedInAdmin', true)
+                localStorage.setItem('flutter.tokenAdmin', '"' + msg + '"')
+                localStorage.setItem('flutter.urlAdmin', GetURLParameter('url'))
+              },
+            })
 
-      if ('serviceWorker' in navigator) {
-        // Service workers are supported. Use them.
-        window.addEventListener('load', function () {
-          // Wait for registration to finish before dropping the <script> tag.
-          // Otherwise, the browser will load the script multiple times,
-          // potentially different versions.
-          var serviceWorkerUrl =
-            'flutter_service_worker.js?v=' + serviceWorkerVersion
-          navigator.serviceWorker.register(serviceWorkerUrl).then((reg) => {
-            function waitForActivation(serviceWorker) {
-              serviceWorker.addEventListener('statechange', () => {
-                if (serviceWorker.state == 'activated') {
-                  console.log('Installed new service worker.')
-                  loadMainDartJs()
-                }
+          ​
+            var serviceWorkerVersion = '2735899850'
+            var scriptLoaded = false
+
+            function loadMainDartJs() {
+              if (scriptLoaded) {
+                return
+              }
+              scriptLoaded = true
+              var scriptTag = document.createElement('script')
+              scriptTag.src = 'main.dart.js'
+              scriptTag.type = 'application/javascript'
+              document.body.append(scriptTag)
+            }
+
+
+
+            if ('serviceWorker' in navigator) {
+              // Service workers are supported. Use them.
+              window.addEventListener('load', function () {
+                // Wait for registration to finish before dropping the <script> tag.
+                // Otherwise, the browser will load the script multiple times,
+                // potentially different versions.
+                var serviceWorkerUrl =
+                  'flutter_service_worker.js?v=' + serviceWorkerVersion
+                navigator.serviceWorker.register(serviceWorkerUrl).then((reg) => {
+                  function waitForActivation(serviceWorker) {
+                    serviceWorker.addEventListener('statechange', () => {
+                      if (serviceWorker.state == 'activated') {
+                        console.log('Installed new service worker.')
+                        loadMainDartJs()
+                      }
+                    })
+                  }
+
+                  if (!reg.active && (reg.installing || reg.waiting)) {
+                    // No active web worker and we have installed or are installing
+                    // one for the first time. Simply wait for it to activate.
+                    waitForActivation(reg.installing || reg.waiting)
+                  } else if (!reg.active.scriptURL.endsWith(serviceWorkerVersion)) {
+                    // When the app updates the serviceWorkerVersion changes, so we
+                    // need to ask the service worker to update.
+                    console.log('New service worker available.')
+                    reg.update()
+                    waitForActivation(reg.installing)
+                  } else {
+                    // Existing service worker is still good.
+                    console.log('Loading app from service worker.')
+                    loadMainDartJs()
+                  }
+                })
+
+                // If service worker doesn't succeed in a reasonable amount of time,
+                // fallback to plaint <script> tag.
+                setTimeout(() => {
+                  if (!scriptLoaded) {
+                    console.warn(
+                      'Failed to load app from service worker. Falling back to plain <script> tag.',
+                    )
+                    loadMainDartJs()
+                  }
+                }, 4000)
               })
-            }
-
-            if (!reg.active && (reg.installing || reg.waiting)) {
-              // No active web worker and we have installed or are installing
-              // one for the first time. Simply wait for it to activate.
-              waitForActivation(reg.installing || reg.waiting)
-            } else if (!reg.active.scriptURL.endsWith(serviceWorkerVersion)) {
-              // When the app updates the serviceWorkerVersion changes, so we
-              // need to ask the service worker to update.
-              console.log('New service worker available.')
-              reg.update()
-              waitForActivation(reg.installing)
             } else {
-              // Existing service worker is still good.
-              console.log('Loading app from service worker.')
+              // Service workers not supported. Just drop the <script> tag.
               loadMainDartJs()
             }
-          })
 
-          // If service worker doesn't succeed in a reasonable amount of time,
-          // fallback to plaint <script> tag.
-          setTimeout(() => {
-            if (!scriptLoaded) {
-              console.warn(
-                'Failed to load app from service worker. Falling back to plain <script> tag.',
-              )
-              loadMainDartJs()
-            }
-          }, 4000)
-        })
-      } else {
-        // Service workers not supported. Just drop the <script> tag.
-        loadMainDartJs()
-      }
-
-      // $.post("https://carers.care/api/admin/login",
-      //         {
-      //           email: "Admin@carers.com",
-      //           password: "Carers@admin"
-      //         },
-      //         function(data, status){
-      //           console.log("Data: " + data + "\nStatus: " + status);
-      //         });
-      // $.get("https://carers.care/api/admin/login", function(data, status){
-      //   alert("Data: " + data + "\nStatus: " + status);
-      // });
+            // $.post("https://carers.care/api/admin/login",
+            //         {
+            //           email: "Admin@carers.com",
+            //           password: "Carers@admin"
+            //         },
+            //         function(data, status){
+            //           console.log("Data: " + data + "\nStatus: " + status);
+            //         });
+            // $.get("https://carers.care/api/admin/login", function(data, status){
+            //   alert("Data: " + data + "\nStatus: " + status);
+            // });
     </script>
     <script></script>
   </body>
